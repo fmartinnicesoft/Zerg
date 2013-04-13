@@ -133,14 +133,37 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // HelloTheWorld
-        if ($pathinfo === '/hello-world') {
-            return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::indexAction',  '_route' => 'HelloTheWorld',);
-        }
+        if (0 === strpos($pathinfo, '/blog')) {
+            // zergcalls_accueil
+            if (preg_match('#^/blog(?:/(?P<page>\\d*))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_accueil')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::indexAction',  'page' => 1,));
+            }
 
-        // ByeByeTheWorld
-        if ($pathinfo === '/byebye-world') {
-            return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::byeAction',  '_route' => 'ByeByeTheWorld',);
+            // zergcalls_voir
+            if (0 === strpos($pathinfo, '/blog/article') && preg_match('#^/blog/article/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_voir')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::voirAction',));
+            }
+
+            // zerg_calls_voir_slug
+            if (preg_match('#^/blog/(?P<annee>\\d{4})/(?P<slug>[^/\\.]++)\\.(?P<format>html|xml)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zerg_calls_voir_slug')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::voirSlugAction',  '_format' => 'html',));
+            }
+
+            // zergcalls_ajouter
+            if ($pathinfo === '/blog/ajouter') {
+                return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::ajouterAction',  '_route' => 'zergcalls_ajouter',);
+            }
+
+            // zergcalls_modifier
+            if (0 === strpos($pathinfo, '/blog/modifier') && preg_match('#^/blog/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_modifier')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::modifierAction',));
+            }
+
+            // zergcalls_supprimer
+            if (0 === strpos($pathinfo, '/blog/supprimer') && preg_match('#^/blog/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_supprimer')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::supprimerAction',));
+            }
+
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
