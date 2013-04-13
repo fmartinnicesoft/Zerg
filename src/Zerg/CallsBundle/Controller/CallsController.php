@@ -10,4 +10,8 @@ class CallsController extends Controller
     {
         return $this->render('ZergCallsBundle:Calls:index.html.twig');
     }
+    public function byeAction()
+    {
+        return $this->render('ZergCallsBundle:Calls:bye.html.twig');
+    }
 }

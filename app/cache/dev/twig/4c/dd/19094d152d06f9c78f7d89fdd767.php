@@ -1,7 +1,7 @@
 <?php
 
-/* ZergCallsBundle:Calls:index.html.twig */
-class __TwigTemplate_a4b4b8fa110966557cb88501b8dea48c extends Twig_Template
+/* ZergCallsBundle:Calls:bye.html.twig */
+class __TwigTemplate_4cdd19094d152d06f9c78f7d89fdd767 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -22,19 +22,14 @@ class __TwigTemplate_a4b4b8fa110966557cb88501b8dea48c extends Twig_Template
         <title>Bienvenue sur ma première page!</title>
     </head>
     <body>
-        <h1>Hello World!!</h1>
-        
-        <p>
-            La vie c'est vraiment trop cool. Surtout quand Symfony t'évite de 
-            te casser le cul avec des trucs relous. 
-        </p>
+        <h1>ByeBye World!!</h1>
     </body>
 </html>";
     }
 
     public function getTemplateName()
     {
-        return "ZergCallsBundle:Calls:index.html.twig";
+        return "ZergCallsBundle:Calls:bye.html.twig";
     }
 
     public function getDebugInfo()
