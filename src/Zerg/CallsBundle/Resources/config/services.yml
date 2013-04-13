@@ -1,0 +1,7 @@
+parameters:
+#    zerg_calls.example.class: Zerg\CallsBundle\Example
+
+services:
+#    zerg_calls.example:
+#        class: %zerg_calls.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

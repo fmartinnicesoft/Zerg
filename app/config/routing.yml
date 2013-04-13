@@ -1,0 +1,4 @@
+zerg_calls:
+    resource: "@ZergCallsBundle/Resources/config/routing.yml"
+    prefix:   /
+
