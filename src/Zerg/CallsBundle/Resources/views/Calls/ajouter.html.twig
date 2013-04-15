@@ -1,9 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Ajouter un article</title>
-    </head>
-    <body>
-        <h1>Ajout d'un article:</h1>
-    </body>
-</html>
+{% extends "ZergCallsBundle::layout.html.twig" %}
+ 
+{% block body %}
+ 
+  <h2>Ajouter un article</h2>
+ 
+  {% include "ZergCallsBundle:Calls:formulaire.html.twig" %}
+ 
+  <p>
+     Attention : cet article sera ajouté directement
+     sur la page d'accueil après validation du formulaire.
+  </p>
+ 
+{% endblock %}

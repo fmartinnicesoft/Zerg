@@ -17,12 +17,34 @@ class CallsController extends Controller
             // Cela va afficher la page d'erreur 404 (on pourra personnaliser cette page plus tard d'ailleurs)
             throw $this->createNotFoundException('Page inexistante (page = '.$page.')');
         }
+        // Les articles :
+        $articles = array(
+              array(
+                  'titre'   => 'Mon weekend a Phi Phi Island !',
+                  'id'      => 1,
+                  'auteur'  => 'winzou',
+                  'contenu' => 'Ce weekend était trop bien. Blabla…',
+                  'date'    => new \Datetime()),
+              array(
+                  'titre'   => 'Repetition du National Day de Singapour',
+                  'id'      => 2,
+                  'auteur' => 'winzou',
+                  'contenu' => 'Bientôt prêt pour le jour J. Blabla…',
+                  'date'    => new \Datetime()),
+              array(
+                  'titre'   => 'Chiffre d\'affaire en hausse',
+                  'id'      => 3,
+                  'auteur' => 'M@teo21',
+                  'contenu' => '+500% sur 1 an, fabuleux. Blabla…',
+                  'date'    => new \Datetime())
+            );
 
-        // Ici, on récupérera la liste des articles, puis on la passera au template
-
-        // Mais pour l'instant, on ne fait qu'appeler le template
-        return $this->render('ZergCallsBundle:Calls:index.html.twig');
+            // Puis modifiez la ligne du render comme ceci, pour prendre en compte nos articles :
+            return $this->render('ZergCallsBundle:Calls:index.html.twig', array(
+              'articles' => $articles
+          ));
     }
+        
 
 
     public function voirAction($id)
@@ -69,4 +91,18 @@ class CallsController extends Controller
 
         return $this->render('ZergCallsBundle:Calls:supprimer.html.twig');
     }
+    
+    public function menuAction()
+  {
+    // On fixe en dur une liste ici, bien entendu par la suite on la récupérera depuis la BDD !
+    $liste = array(
+      array('id' => 2, 'titre' => 'Mon dernier weekend !'),
+      array('id' => 5, 'titre' => 'Sortie de Symfony2.1'),
+      array('id' => 9, 'titre' => 'Petit test')
+    );
+         
+    return $this->render('ZergCallsBundle:Calls:menu.html.twig', array(
+      'liste_articles' => $liste // C'est ici tout l'intérêt : le contrôleur passe les variables nécessaires au template !
+    ));
+  }
 }
