@@ -6,6 +6,8 @@ zergcalls_accueil:
 zergcalls_voir:
     pattern:  /article/{id}
     defaults: { _controller: ZergCallsBundle:Calls:voir }
+    requirements:
+        id: \d+
 
 zerg_calls_voir_slug:
     pattern:  /{annee}/{slug}.{format}

@@ -21,7 +21,7 @@ class CallsController extends Controller
         // Ici, on récupérera la liste des articles, puis on la passera au template
 
         // Mais pour l'instant, on ne fait qu'appeler le template
-        return $this->render('SdzBlogBundle:Blog:index.html.twig');
+        return $this->render('ZergCallsBundle:Calls:index.html.twig');
     }
 
 
@@ -29,7 +29,7 @@ class CallsController extends Controller
     {
         // Ici, on récupérera l'article correspondant à l'id $id
 
-        return $this->render('SdzBlogBundle:Blog:voir.html.twig', array(
+        return $this->render('ZergCallsBundle:Calls:voir.html.twig', array(
           'id' => $id
         ));
     }
@@ -49,7 +49,7 @@ class CallsController extends Controller
         }
 
         // Si on n'est pas en POST, alors on affiche le formulaire
-        return $this->render('SdzBlogBundle:Blog:ajouter.html.twig');
+        return $this->render('ZergCallsBundle:Calls:ajouter.html.twig');
     }
 
     public function modifierAction($id)
@@ -58,7 +58,7 @@ class CallsController extends Controller
 
         // Ici, on s'occupera de la création et de la gestion du formulaire
 
-        return $this->render('SdzBlogBundle:Blog:modifier.html.twig');
+        return $this->render('ZergCallsBundle:Calls:modifier.html.twig');
     }
 
     public function supprimerAction($id)
@@ -67,6 +67,6 @@ class CallsController extends Controller
 
         // Ici, on gérera la suppression de l'article en question
 
-        return $this->render('SdzBlogBundle:Blog:supprimer.html.twig');
+        return $this->render('ZergCallsBundle:Calls:supprimer.html.twig');
     }
 }
