@@ -133,35 +133,109 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/blog')) {
-            // zergcalls_accueil
-            if (preg_match('#^/blog(?:/(?P<page>\\d*))?$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_accueil')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::indexAction',  'page' => 1,));
+        if (0 === strpos($pathinfo, '/zerg')) {
+            // zergcalls_homepage
+            if (rtrim($pathinfo, '/') === '/zerg') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'zergcalls_homepage');
+                }
+
+                return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::indexAction',  '_route' => 'zergcalls_homepage',);
             }
 
-            // zergcalls_voir
-            if (0 === strpos($pathinfo, '/blog/article') && preg_match('#^/blog/article/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_voir')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::voirAction',));
+            if (0 === strpos($pathinfo, '/zerg/sites')) {
+                // zergcalls_sites
+                if ($pathinfo === '/zerg/sites') {
+                    return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listSitesAction',  '_route' => 'zergcalls_sites',);
+                }
+
+                // zergcall_addsite
+                if ($pathinfo === '/zerg/sites/add') {
+                    return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::addSiteAction',  '_route' => 'zergcall_addsite',);
+                }
+
+                // zergcall_modifysite
+                if (0 === strpos($pathinfo, '/zerg/sites/modify') && preg_match('#^/zerg/sites/modify/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcall_modifysite')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::modifySiteAction',));
+                }
+
+                // zergcall_delsite
+                if (0 === strpos($pathinfo, '/zerg/sites/del') && preg_match('#^/zerg/sites/del/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcall_delsite')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::delSiteAction',));
+                }
+
             }
 
-            // zerg_calls_voir_slug
-            if (preg_match('#^/blog/(?P<annee>\\d{4})/(?P<slug>[^/\\.]++)\\.(?P<format>html|xml)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zerg_calls_voir_slug')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::voirSlugAction',  '_format' => 'html',));
+            if (0 === strpos($pathinfo, '/zerg/c')) {
+                if (0 === strpos($pathinfo, '/zerg/contacts')) {
+                    // zergcalls_contacts
+                    if (preg_match('#^/zerg/contacts/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_contacts')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listContactsAction',));
+                    }
+
+                    // zergcall_addcontact
+                    if ($pathinfo === '/zerg/contacts/add') {
+                        return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::addContactAction',  '_route' => 'zergcall_addcontact',);
+                    }
+
+                    // zergcall_modifycontact
+                    if (0 === strpos($pathinfo, '/zerg/contacts/modify') && preg_match('#^/zerg/contacts/modify/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcall_modifycontact')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::modifyContactAction',));
+                    }
+
+                    // zergcall_delcontact
+                    if (0 === strpos($pathinfo, '/zerg/contacts/del') && preg_match('#^/zerg/contacts/del/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcall_delcontact')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::delContactAction',));
+                    }
+
+                }
+
+                if (0 === strpos($pathinfo, '/zerg/calls')) {
+                    // zergcalls_calls
+                    if (preg_match('#^/zerg/calls/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_calls')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listCallssAction',));
+                    }
+
+                    // zergcall_addcall
+                    if ($pathinfo === '/zerg/calls/add') {
+                        return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::addCallAction',  '_route' => 'zergcall_addcall',);
+                    }
+
+                    // zergcall_modifycall
+                    if (0 === strpos($pathinfo, '/zerg/calls/modify') && preg_match('#^/zerg/calls/modify/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcall_modifycall')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::modifyCallAction',));
+                    }
+
+                    // zergcall_delcall
+                    if (0 === strpos($pathinfo, '/zerg/calls/del') && preg_match('#^/zerg/calls/del/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcall_delcall')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::delCallAction',));
+                    }
+
+                }
+
             }
 
-            // zergcalls_ajouter
-            if ($pathinfo === '/blog/ajouter') {
-                return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::ajouterAction',  '_route' => 'zergcalls_ajouter',);
-            }
+            if (0 === strpos($pathinfo, '/zerg/licences')) {
+                // zergcalls_licences
+                if (preg_match('#^/zerg/licences/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_licences')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listLicencesAction',));
+                }
 
-            // zergcalls_modifier
-            if (0 === strpos($pathinfo, '/blog/modifier') && preg_match('#^/blog/modifier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_modifier')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::modifierAction',));
-            }
+                // zergcall_addlicence
+                if ($pathinfo === '/zerg/licences/add') {
+                    return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::addLicenceAction',  '_route' => 'zergcall_addlicence',);
+                }
 
-            // zergcalls_supprimer
-            if (0 === strpos($pathinfo, '/blog/supprimer') && preg_match('#^/blog/supprimer/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_supprimer')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::supprimerAction',));
+                // zergcall_modifylicence
+                if (0 === strpos($pathinfo, '/zerg/licences/modify') && preg_match('#^/zerg/licences/modify/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcall_modifylicence')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::modifyLicenceAction',));
+                }
+
+                // zergcall_dellicence
+                if (0 === strpos($pathinfo, '/zerg/licences/del') && preg_match('#^/zerg/licences/del/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcall_dellicence')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::delLicenceAction',));
+                }
+
             }
 
         }

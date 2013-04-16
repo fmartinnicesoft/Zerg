@@ -1,33 +1,67 @@
-zergcalls_accueil:
-    pattern:  /{page}
-    defaults: { _controller: ZergCallsBundle:Calls:index , page: 1 }
-    requirements:
-        page: \d*
-zergcalls_voir:
-    pattern:  /article/{id}
-    defaults: { _controller: ZergCallsBundle:Calls:voir }
-    requirements:
-        id: \d+
+zergcalls_homepage:
+    pattern:  /
+    defaults: { _controller: ZergCallsBundle:Calls:index }
 
-zerg_calls_voir_slug:
-    pattern:  /{annee}/{slug}.{format}
-    defaults: {_controller: ZergCallsBundle:Calls:voirSlug , _format: html}
-    requirements:
-        annee:  \d{4}
-        format: html|xml
-        
-zergcalls_ajouter:
-    pattern:  /ajouter
-    defaults: { _controller: ZergCallsBundle:Calls:ajouter }
+zergcalls_sites:
+    pattern:  /sites
+    defaults: { _controller: ZergCallsBundle:Calls:listSites }
+  
+zergcall_addsite:
+    pattern:  /sites/add
+    defaults: { _controller: ZergCallsBundle:Calls:addSite }
     
-zergcalls_modifier:
-    pattern:  /modifier/{id}
-    defaults: { _controller: ZergCallsBundle:Calls:modifier }
-    requirements:
-        id: \d+
-        
-zergcalls_supprimer:
-    pattern:  /supprimer/{id}
-    defaults: { _controller: ZergCallsBundle:Calls:supprimer }
-    requirements:
-        id: \d+
+zergcall_modifysite:
+    pattern:  /sites/modify/{id}
+    defaults: { _controller: ZergCallsBundle:Calls:modifySite }
+    
+zergcall_delsite:
+    pattern:  /sites/del/{id}
+    defaults: { _controller: ZergCallsBundle:Calls:delSite }
+    
+zergcalls_contacts:
+    pattern:  /contacts/{page}
+    defaults: { _controller: ZergCallsBundle:Calls:listContacts }
+  
+zergcall_addcontact:
+    pattern:  /contacts/add
+    defaults: { _controller: ZergCallsBundle:Calls:addContact }
+    
+zergcall_modifycontact:
+    pattern:  /contacts/modify/{id}
+    defaults: { _controller: ZergCallsBundle:Calls:modifyContact }
+    
+zergcall_delcontact:
+    pattern:  /contacts/del/{id}
+    defaults: { _controller: ZergCallsBundle:Calls:delContact }
+    
+zergcalls_calls:
+    pattern:  /calls/{page}
+    defaults: { _controller: ZergCallsBundle:Calls:listCallss }
+  
+zergcall_addcall:
+    pattern:  /calls/add
+    defaults: { _controller: ZergCallsBundle:Calls:addCall }
+    
+zergcall_modifycall:
+    pattern:  /calls/modify/{id}
+    defaults: { _controller: ZergCallsBundle:Calls:modifyCall }
+    
+zergcall_delcall:
+    pattern:  /calls/del/{id}
+    defaults: { _controller: ZergCallsBundle:Calls:delCall }
+    
+zergcalls_licences:
+    pattern:  /licences/{page}
+    defaults: { _controller: ZergCallsBundle:Calls:listLicences }
+  
+zergcall_addlicence:
+    pattern:  /licences/add
+    defaults: { _controller: ZergCallsBundle:Calls:addLicence }
+    
+zergcall_modifylicence:
+    pattern:  /licences/modify/{id}
+    defaults: { _controller: ZergCallsBundle:Calls:modifyLicence }
+    
+zergcall_dellicence:
+    pattern:  /licences/del/{id}
+    defaults: { _controller: ZergCallsBundle:Calls:delLicence }

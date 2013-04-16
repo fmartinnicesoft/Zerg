@@ -1,4 +1,4 @@
 zerg_calls:
     resource: "@ZergCallsBundle/Resources/config/routing.yml"
-    prefix:   /blog
+    prefix:   /zerg
 
