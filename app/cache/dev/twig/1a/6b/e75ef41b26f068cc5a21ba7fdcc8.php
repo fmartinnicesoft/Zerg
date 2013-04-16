@@ -7,22 +7,35 @@ class __TwigTemplate_1a6be75ef41b26f068cc5a21ba7fdcc8 extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = false;
+        $this->parent = $this->env->loadTemplate("ZergCallsBundle::layout.html.twig");
 
         $this->blocks = array(
+            'liste_body' => array($this, 'block_liste_body'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "ZergCallsBundle::layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        // line 1
-        echo "<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
-    </body>
-</html>";
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_liste_body($context, array $blocks = array())
+    {
+        // line 4
+        echo " 
+  <h2>Liste des interventions en cours</h2>
+ 
+  <ul>
+      <li>Pas d'interventions</li>
+  </ul>
+ 
+";
     }
 
     public function getTemplateName()
@@ -30,8 +43,13 @@ class __TwigTemplate_1a6be75ef41b26f068cc5a21ba7fdcc8 extends Twig_Template
         return "ZergCallsBundle:Calls:index.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  19 => 1,);
+        return array (  31 => 4,  28 => 3,);
     }
 }

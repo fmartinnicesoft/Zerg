@@ -12,7 +12,7 @@ class __TwigTemplate_6c70a702acdb92f8e4eaf17db4fb5142 extends Twig_Template
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'body' => array($this, 'block_body'),
-            'zergcalls_body' => array($this, 'block_zergcalls_body'),
+            'liste_body' => array($this, 'block_liste_body'),
         );
     }
 
@@ -26,40 +26,40 @@ class __TwigTemplate_6c70a702acdb92f8e4eaf17db4fb5142 extends Twig_Template
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 5
+    // line 3
     public function block_title($context, array $blocks = array())
     {
-        // line 6
-        echo "  Blog - ";
+        // line 4
+        echo "  Liste de travail - ";
         $this->displayParentBlock("title", $context, $blocks);
         echo "
 ";
     }
 
-    // line 9
+    // line 7
     public function block_body($context, array $blocks = array())
     {
-        // line 10
+        // line 8
         echo " 
   ";
-        // line 12
-        echo "  <h1>Blog</h1>
+        // line 10
+        echo "  <h1>Tableau de Bord</h1>
  
   <hr>
  
   ";
-        // line 17
+        // line 15
         echo "  ";
-        $this->displayBlock('zergcalls_body', $context, $blocks);
-        // line 19
+        $this->displayBlock('liste_body', $context, $blocks);
+        // line 17
         echo " 
 ";
     }
 
-    // line 17
-    public function block_zergcalls_body($context, array $blocks = array())
+    // line 15
+    public function block_liste_body($context, array $blocks = array())
     {
-        // line 18
+        // line 16
         echo "  ";
     }
 
@@ -75,6 +75,6 @@ class __TwigTemplate_6c70a702acdb92f8e4eaf17db4fb5142 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  63 => 18,  60 => 17,  55 => 19,  52 => 17,  46 => 12,  43 => 10,  40 => 9,  33 => 6,  30 => 5,  81 => 23,  74 => 21,  66 => 18,  62 => 17,  56 => 16,  53 => 15,  48 => 14,  42 => 10,  39 => 9,  32 => 6,  29 => 5,);
+        return array (  63 => 16,  60 => 15,  55 => 17,  52 => 15,  46 => 10,  43 => 8,  40 => 7,  33 => 4,  30 => 3,  31 => 4,  28 => 3,);
     }
 }

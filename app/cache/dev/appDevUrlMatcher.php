@@ -169,8 +169,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             if (0 === strpos($pathinfo, '/zerg/c')) {
                 if (0 === strpos($pathinfo, '/zerg/contacts')) {
                     // zergcalls_contacts
-                    if (preg_match('#^/zerg/contacts/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_contacts')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listContactsAction',));
+                    if ($pathinfo === '/zerg/contacts') {
+                        return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listContactsAction',  '_route' => 'zergcalls_contacts',);
                     }
 
                     // zergcall_addcontact
@@ -192,8 +192,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
                 if (0 === strpos($pathinfo, '/zerg/calls')) {
                     // zergcalls_calls
-                    if (preg_match('#^/zerg/calls/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_calls')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listCallssAction',));
+                    if ($pathinfo === '/zerg/calls') {
+                        return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listCallsAction',  '_route' => 'zergcalls_calls',);
                     }
 
                     // zergcall_addcall
@@ -217,8 +217,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             if (0 === strpos($pathinfo, '/zerg/licences')) {
                 // zergcalls_licences
-                if (preg_match('#^/zerg/licences/(?P<page>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'zergcalls_licences')), array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listLicencesAction',));
+                if ($pathinfo === '/zerg/licences') {
+                    return array (  '_controller' => 'Zerg\\CallsBundle\\Controller\\CallsController::listLicencesAction',  '_route' => 'zergcalls_licences',);
                 }
 
                 // zergcall_addlicence

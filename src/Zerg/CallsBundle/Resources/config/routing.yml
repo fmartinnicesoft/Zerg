@@ -19,7 +19,7 @@ zergcall_delsite:
     defaults: { _controller: ZergCallsBundle:Calls:delSite }
     
 zergcalls_contacts:
-    pattern:  /contacts/{page}
+    pattern:  /contacts
     defaults: { _controller: ZergCallsBundle:Calls:listContacts }
   
 zergcall_addcontact:
@@ -35,8 +35,8 @@ zergcall_delcontact:
     defaults: { _controller: ZergCallsBundle:Calls:delContact }
     
 zergcalls_calls:
-    pattern:  /calls/{page}
-    defaults: { _controller: ZergCallsBundle:Calls:listCallss }
+    pattern:  /calls
+    defaults: { _controller: ZergCallsBundle:Calls:listCalls }
   
 zergcall_addcall:
     pattern:  /calls/add
@@ -51,7 +51,7 @@ zergcall_delcall:
     defaults: { _controller: ZergCallsBundle:Calls:delCall }
     
 zergcalls_licences:
-    pattern:  /licences/{page}
+    pattern:  /licences
     defaults: { _controller: ZergCallsBundle:Calls:listLicences }
   
 zergcall_addlicence:
