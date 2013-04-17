@@ -13,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class Ticket
 {
     /**
+     * @ORM\OneToOne(targetEntity="Zerg\CallsBundle\Entity\User",
+     *  cascade={"persist"})
+     */
+    
+    private $attributedto;
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -62,7 +69,28 @@ class Ticket
      * @ORM\Column(name="solution", type="text")
      */
     private $solution;
-
+    
+    /**
+     * Get attributedto
+     *
+     * @return integer 
+     */
+    public function getAttributedto()
+    {
+        return $this->attributedto;
+    }
+    
+    /**
+     * Set attributedto
+     *
+     * @return integer 
+     */
+    public function setAttributed($attributedto)
+    {
+        $this->attributedto = $attributedto;
+    
+        return $this;
+    }
 
     /**
      * Get id
