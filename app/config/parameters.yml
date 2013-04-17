@@ -2,13 +2,13 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: globalmanager
+    database_name: zerg
     database_user: root
     database_password: root
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
-    locale: en
+    locale: fr
     secret: ad9a947fe2ae6eb7f336736c8c0193f1
     database_path: null
