@@ -32,6 +32,12 @@ class Site
      */
     
     private $contacts;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Zerg\CallsBundle\Entity\Access", mappedBy="site")
+     */
+    
+    private $accesses;
 
     /**
      * @var string
@@ -560,6 +566,7 @@ class Site
     {
         $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
         $this->contacts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->accesses = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -626,5 +633,38 @@ class Site
     public function getContacts()
     {
         return $this->contacts;
+    }
+
+    /**
+     * Add accesses
+     *
+     * @param \Zerg\CallsBundle\Entity\Access $accesses
+     * @return Site
+     */
+    public function addAccess(\Zerg\CallsBundle\Entity\Access $accesses)
+    {
+        $this->accesses[] = $accesses;
+    
+        return $this;
+    }
+
+    /**
+     * Remove accesses
+     *
+     * @param \Zerg\CallsBundle\Entity\Access $accesses
+     */
+    public function removeAccess(\Zerg\CallsBundle\Entity\Access $accesses)
+    {
+        $this->accesses->removeElement($accesses);
+    }
+
+    /**
+     * Get accesses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAccesses()
+    {
+        return $this->accesses;
     }
 }

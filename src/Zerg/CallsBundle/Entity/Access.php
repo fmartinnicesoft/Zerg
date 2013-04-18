@@ -20,6 +20,13 @@ class Access
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Zerg\CallsBundle\Entity\Site")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $site;
 
     /**
      * @var string
@@ -360,5 +367,28 @@ class Access
     public function getDatemaj()
     {
         return $this->datemaj;
+    }
+
+    /**
+     * Set site
+     *
+     * @param \Zerg\CallsBundle\Entity\Site $site
+     * @return Access
+     */
+    public function setSite(\Zerg\CallsBundle\Entity\Site $site)
+    {
+        $this->site = $site;
+    
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return \Zerg\CallsBundle\Entity\Site 
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 }
