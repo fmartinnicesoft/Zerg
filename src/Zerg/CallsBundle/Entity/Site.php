@@ -20,6 +20,18 @@ class Site
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Zerg\CallsBundle\Entity\Ticket", mappedBy="site")
+     */
+    
+    private $tickets;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Zerg\CallsBundle\Entity\Contact", mappedBy="site")
+     */
+    
+    private $contacts;
 
     /**
      * @var string
@@ -540,5 +552,79 @@ class Site
     public function getVersion()
     {
         return $this->version;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->contacts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add tickets
+     *
+     * @param \Zerg\CallsBundle\Entity\Ticket $tickets
+     * @return Site
+     */
+    public function addTicket(\Zerg\CallsBundle\Entity\Ticket $tickets)
+    {
+        $this->tickets[] = $tickets;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tickets
+     *
+     * @param \Zerg\CallsBundle\Entity\Ticket $tickets
+     */
+    public function removeTicket(\Zerg\CallsBundle\Entity\Ticket $tickets)
+    {
+        $this->tickets->removeElement($tickets);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * Add contacts
+     *
+     * @param \Zerg\CallsBundle\Entity\Contact $contacts
+     * @return Site
+     */
+    public function addContact(\Zerg\CallsBundle\Entity\Contact $contacts)
+    {
+        $this->contacts[] = $contacts;
+    
+        return $this;
+    }
+
+    /**
+     * Remove contacts
+     *
+     * @param \Zerg\CallsBundle\Entity\Contact $contacts
+     */
+    public function removeContact(\Zerg\CallsBundle\Entity\Contact $contacts)
+    {
+        $this->contacts->removeElement($contacts);
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
     }
 }

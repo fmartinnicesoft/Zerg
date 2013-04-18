@@ -28,6 +28,13 @@ class Ticket
     
     private $user;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="Zerg\CallsBundle\Entity\Site")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    
+    private $site;
+    
    /**
      * @var \DateTime
      *
@@ -239,5 +246,28 @@ class Ticket
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set site
+     *
+     * @param \Zerg\CallsBundle\Entity\Site $site
+     * @return Ticket
+     */
+    public function setSite(\Zerg\CallsBundle\Entity\Site $site)
+    {
+        $this->site = $site;
+    
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return \Zerg\CallsBundle\Entity\Site 
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 }

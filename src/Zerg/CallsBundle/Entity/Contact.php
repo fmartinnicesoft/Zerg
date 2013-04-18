@@ -20,6 +20,13 @@ class Contact
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Zerg\CallsBundle\Entity\Site")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    
+    private $site;
 
     /**
      * @var string
@@ -480,5 +487,28 @@ class Contact
     public function getDatemaj()
     {
         return $this->datemaj;
+    }
+
+    /**
+     * Set site
+     *
+     * @param \Zerg\CallsBundle\Entity\Site $site
+     * @return Contact
+     */
+    public function setSite(\Zerg\CallsBundle\Entity\Site $site = null)
+    {
+        $this->site = $site;
+    
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return \Zerg\CallsBundle\Entity\Site 
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 }
