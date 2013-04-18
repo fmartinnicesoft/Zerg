@@ -22,6 +22,12 @@ class User
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="Zerg\CallsBundle\Entity\Ticket", mappedBy="user")
+     */
+    
+    private $tickets;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=50)
@@ -240,5 +246,45 @@ class User
     public function getLocked()
     {
         return $this->locked;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tickets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add tickets
+     *
+     * @param \Zerg\CallsBundle\Entity\Ticket $tickets
+     * @return User
+     */
+    public function addTicket(\Zerg\CallsBundle\Entity\Ticket $tickets)
+    {
+        $this->tickets[] = $tickets;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tickets
+     *
+     * @param \Zerg\CallsBundle\Entity\Ticket $tickets
+     */
+    public function removeTicket(\Zerg\CallsBundle\Entity\Ticket $tickets)
+    {
+        $this->tickets->removeElement($tickets);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
     }
 }
